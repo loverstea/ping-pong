@@ -3,15 +3,9 @@ from time import time as timer
 
 
 class GameSprite(sprite.Sprite):
-    def __init__(self, player_image, player_x, player_y,size_x, size_y, player_speed):
-        super().__init__()
-        self.image = transform.scale(image.load(player_image),(size_x, size_y))
-        self.speed = player_speed
-        self.rect = self.image.get_rect()
-        self.rect.x = player_x 
-        self.rect.y = player_y
-    def reset(self):
-        window.blit(self.image, (self.rect.x, self.rect.y))
+    def __init__():
+        pass
+        
 background=transform.scale(image.load("dyhastmish.jpg"),(700,500))
 window = display.set_mode((700, 500))
 class Player(GameSprite):
@@ -21,11 +15,20 @@ class Player(GameSprite):
             self.rect.x = self.rect.y - self.speed
         if keys[K_UP] and self.rect.y < 490:
             self.rect.x = self.rect.y + self.speed
-
-ball = 
-
+run = True
+clock = time.Clock()
+finish  = False
 FPS = 60
-
-
-display.update()
-clock.tick(FPS)
+while run:
+ 
+    for e in event.get():
+        if e.type == QUIT:
+            run = False
+    if not finish:
+        window.blit(background,(0,0))
+        
+        
+        
+        
+    display.update()
+    clock.tick(FPS)
