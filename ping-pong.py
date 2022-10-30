@@ -19,14 +19,14 @@ window = display.set_mode((win_width, win_height))
 class Player(GameSprite):
     def update_left(self):
         keys = key.get_pressed()
-        if [K_UP] and self.rect.y > 5:
+        if keys [K_UP] and self.rect.y > 5:
             self.rect.y -= self.speed
-        if [K_DOWN] and self.rect.y < 450:
+        if keys [K_DOWN] and self.rect.y < 450:
             self.rect.y += self.speed
     def update_right(self):
-        if [K_w] and self.rect.y > 5:
+        if keys [K_w] and self.rect.y > 5:
             self.rect.y -= self.speed
-        if [K_s] and self.rect.y < 450:
+        if keys [K_s] and self.rect.y < 450:
             self.rect.y += self.speed
             
 playeright = Player ("kirt.png", 630, 200, 5, 100, 150)
@@ -36,6 +36,7 @@ run = True
 clock = time.Clock()
 finish  = False
 FPS = 60
+
 while run:
  
     for e in event.get():
@@ -43,9 +44,9 @@ while run:
             run = False
     if not finish:
         window.blit(background,(0,0))
-        playerleft.reset()
-        playeright.reset()
-        ball.reset()
+        playerleft.update_left()
+        playeright.update_right()
+        ball.update()
         ball.rect.x += speed_x
         ball.rect.y += speed_y
         if ball.rect.y > win_height-50 or ball.rect.y < 0:
@@ -59,10 +60,10 @@ while run:
         if ball.rect.x > 650:
             finish = True
             game_over = True
-        playerleft.update_left()
-        playeright.update_right()
-        ball.update()
-        
+        playerleft.reset()
+        playeright.reset()
+        ball.reset()
+         
         
         
         
