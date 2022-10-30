@@ -13,7 +13,9 @@ class GameSprite(sprite.Sprite):
     def reset(self):
         window.blit(self.image, (self.rect.x, self.rect.y))
 background=transform.scale(image.load("dyhastmish.jpg"),(700,500))
-window = display.set_mode((700, 500))
+win_height = 500
+win_width = 700
+window = display.set_mode((win_width, win_height))
 class Player(GameSprite):
     def update_left(self):
         keys = key.get_pressed()
@@ -27,9 +29,9 @@ class Player(GameSprite):
         if [K_s] and self.rect.y < 450:
             self.rect.y += self.speed
             
-playeright =Player("stovp.png", 630, 200, 5, 40, 150)
-playerleft =Player("stovp.png", 30, 200, 5, 40, 150)
-ball = GameSprite("basketball-png-535126.png", 350, 200, 5, 40, 40)
+playeright = Player ("kirt.png", 630, 200, 5, 100, 150)
+playerleft = Player ("kirt.png", -30, 200, 5, 100, 150)
+ball = GameSprite("is.png", 350, 200, 5, 50, 50)
 run = True
 clock = time.Clock()
 finish  = False
@@ -44,6 +46,17 @@ while run:
         playerleft.reset()
         playeright.reset()
         ball.reset()
+        if ball.rect.y > win_height-50 or ball.rect.y < 0:
+            speed_y *= -1
+        if sprite.collide_rect(playeright, ball) or sprite.collide_rect(playerleft, ball):
+            speed_x *= -1
+            speed_y *= -1
+        if ball.rect.x < 0:
+            finish = True
+            game_over = True
+        if ball.rect.x > 650:
+            finish = True
+            game_over = True
         playerleft.update_left()
         playeright.update_right()
         ball.update()
