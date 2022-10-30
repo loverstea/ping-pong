@@ -46,6 +46,8 @@ while run:
         playerleft.reset()
         playeright.reset()
         ball.reset()
+        ball.rect.x += speed_x
+        ball.rect.y += speed_y
         if ball.rect.y > win_height-50 or ball.rect.y < 0:
             speed_y *= -1
         if sprite.collide_rect(playeright, ball) or sprite.collide_rect(playerleft, ball):
